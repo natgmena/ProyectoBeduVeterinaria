@@ -2,33 +2,39 @@ package org.bedu.java.proyecto.veterinaria.controller;
 
 import jakarta.validation.Valid;
 import org.bedu.java.proyecto.veterinaria.entities.Cliente;
-import org.bedu.java.proyecto.veterinaria.entities.Veterinario;
-import org.bedu.java.proyecto.veterinaria.services.IClienteService;
+import org.bedu.java.proyecto.veterinaria.services.ClienteService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/clientes")
 public class ClienteController {
-    private IClienteService clienteService;
+    private final ClienteService clienteService;
 
-    public ClienteController(IClienteService clienteService) {
+    public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
 
     @PostMapping("/newcliente")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@Valid @RequestBody Cliente cliente){
+    public String save(@Valid @RequestBody Cliente cliente){
         clienteService.save(cliente);
-        return cliente;
+        return "clientes";
     }
 
-    @GetMapping("/allclientes")
-    public List<Cliente> findAll(){
-        return clienteService.findAll();
+    @GetMapping("/agregar")
+    public String agregar(Cliente cliente){
+        return "modificar";
+    }
+
+    @GetMapping()
+    public String clientes(Model model){
+        var clientes = clienteService.findAll();
+        model.addAttribute("clientes", clientes);
+        return "clientes";
     }
 
     @GetMapping("/buscar/{id}")

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layouts/head :: head}">
+</head>
+<body>
+<header th:insert="~{layouts/header :: header}"></header>
+<div>
+    <a th:href="@{/clientes/agregar}">Agregar Cliente</a>
+    <div th:if="${clientes != null and !clientes.isEmpty()}">
+        <table border="1">
+            <tr>
+                <th>Nombre:</th>
+                <th>Apellido Paterno:</th>
+                <th>Apellido Materno</th>
+                <th>Direccion:</th>
+                <th>Telefono:</th>
+                <th>Email:</th>
+            </tr>
+
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.nombre}">Mostrar Nombre</td>
+                <td th:text="${cliente.apePaterno}">Mostrar Apellido</td>
+                <td th:text="${cliente.apeMaterno}">Mostrar Apellido</td>
+                <td th:text="${cliente.direccion}">Mostrar Direccion</td>
+                <td th:text="${cliente.telefono}">Mostrar Telefono</td>
+                <td th:text="${cliente.email}">Mostrar Email</td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${clientes == null or clientes.isEmpty()}">
+        La lista de personas esta vacia
+        </div>
+</div>
+</body>
+</html>

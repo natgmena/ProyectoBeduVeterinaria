@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.bedu.java.proyecto.veterinaria.entities.Cliente;
 import org.bedu.java.proyecto.veterinaria.entities.Veterinario;
 import org.bedu.java.proyecto.veterinaria.services.IVeterinarioService;
+import org.bedu.java.proyecto.veterinaria.services.VeterinarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +14,9 @@ import java.util.List;
 @RequestMapping("/veterinarios")
 public class VeterinarioController {
 
-    private IVeterinarioService veterinarioService;
+    private VeterinarioService veterinarioService;
 
-    public VeterinarioController(IVeterinarioService veterinarioService) {
+    public VeterinarioController(VeterinarioService veterinarioService) {
         this.veterinarioService = veterinarioService;
     }
 
