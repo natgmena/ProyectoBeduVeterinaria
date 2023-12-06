@@ -2,10 +2,16 @@ package org.bedu.java.proyecto.veterinaria.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "clientes")
 public class Cliente implements Serializable {
@@ -13,75 +19,33 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idCliente;
+
     @NotEmpty(message = "El nombre del cliente no puede estar vacio")
+    @Column(length = 30)
     private String nombre;
-    @NotEmpty(message = "El apellido paterno del cliente no puede estar vacio")
+
+    @NotEmpty(message = "El apellido parterno del cliente no puede estar vacio")
+    @Column(length = 30, name = "ape_paterno")
     private String apePaterno;
+
+    @NotEmpty(message = "El apellido materno del cliente no puede estar vacio")
+    @Column(length = 30, name = "ape_materno")
     private String apeMaterno;
-    @NotBlank(message = "Se debe proporcionar una direccion")
-    @Length(min = 5, max = 50)
+
+    @NotBlank(message = "La direccion del cliente no puede estar vacia")
+    @Column(length = 100)
     private String direccion;
-    @NotNull
+
+
+    @NotNull(message = "El telefono no puede estar vacio")
+    @Column(nullable = false, length = 10)
     private Long telefono;
+
     @Email
+    @Column(nullable = false, length = 26)
+    @NotNull(message = "El correo del cliente no puede estar vacio")
     private String email;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApePaterno() {
-        return apePaterno;
-    }
-
-    public void setApePaterno(String apePaterno) {
-        this.apePaterno = apePaterno;
-    }
-
-    public String getApeMaterno() {
-        return apeMaterno;
-    }
-
-    public void setApeMaterno(String apeMaterno) {
-        this.apeMaterno = apeMaterno;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public Long getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(Long telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getNombreCompleto(){
         return nombre + " " + apePaterno + " " + apeMaterno;
