@@ -19,7 +19,7 @@ public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idCliente;
+    private Long id;
 
     @NotEmpty(message = "El nombre del cliente no puede estar vacio")
     @Column(length = 30)

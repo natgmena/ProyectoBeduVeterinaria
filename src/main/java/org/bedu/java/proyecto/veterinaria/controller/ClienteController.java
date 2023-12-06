@@ -5,6 +5,7 @@ import org.bedu.java.proyecto.veterinaria.entities.Cliente;
 import org.bedu.java.proyecto.veterinaria.entities.Veterinario;
 import org.bedu.java.proyecto.veterinaria.services.ClienteService;
 import org.bedu.java.proyecto.veterinaria.services.IClienteService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -64,15 +65,17 @@ public class ClienteController {
     }
 
 
-    //Metodos para usar con postman
+    //Metodospara  usar con postman
 
     @PostMapping("/newcliente")
+    @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void guardar(@Valid @RequestBody Cliente cliente){
         clienteService.save(cliente);
     }
 
     @PutMapping("/actualizar/{id}")
-    public @ResponseBody void actualizar(@Valid @RequestBody Cliente cliente){
+    @ResponseStatus(HttpStatus.OK)
+    public @ResponseBody void actualizar(@PathVariable("id") Long id, @Valid @RequestBody Cliente cliente){
         clienteService.update(cliente);
     }
 
@@ -82,6 +85,7 @@ public class ClienteController {
     }
 
     @GetMapping("/allclientes")
+    @ResponseStatus(HttpStatus.OK)
     public @ResponseBody List<Cliente> findAll(Cliente cliente){
         return clienteService.findAll();
     }

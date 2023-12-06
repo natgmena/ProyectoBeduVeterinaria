@@ -22,14 +22,12 @@ public class Consulta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idHisMed;
+    private Long id;
 
     @ManyToOne
-    @Column(length = 150)
     private Mascota mascota;
 
     @ManyToOne
-    @Column
     private Veterinario veterinario;
 
     @Column(name = "fecha_registro")

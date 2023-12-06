@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="14a5279b-3192-4214-a19a-13ee61016d9f" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/checksums.lock" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.gradle/8.4/checksums/md5-checksums.bin" afterDir="false" />
@@ -29,6 +30,10 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/org/bedu/java/proyecto/veterinaria/entities/Consulta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bedu/java/proyecto/veterinaria/entities/Consulta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/bedu/java/proyecto/veterinaria/entities/Mascota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bedu/java/proyecto/veterinaria/entities/Mascota.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/bedu/java/proyecto/veterinaria/entities/Veterinario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bedu/java/proyecto/veterinaria/entities/Veterinario.java" afterDir="false" />
+=======
+    <list default="true" id="684890b0-f78c-455f-b789-a69631de760f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bedu/java/proyecto/veterinaria/controller/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bedu/java/proyecto/veterinaria/controller/ClienteController.java" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +48,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+<<<<<<< Updated upstream
+=======
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+>>>>>>> Stashed changes
         <projects_view>
           <tree_state>
             <expand>
@@ -63,11 +74,16 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< Updated upstream
   <component name="ProjectId" id="2YxrXTvaA9dfzK4whYUfSlkVz9Q" />
+=======
+  <component name="ProjectId" id="2ZAq2eX6Q9tAea4kS4IMOYPgxNs" />
+>>>>>>> Stashed changes
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -86,6 +102,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701478110855</updated>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/natha/OneDrive/Documents/GitHub/ProyectoBeduVeterinaria"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="684890b0-f78c-455f-b789-a69631de760f" name="Changes" comment="" />
+      <created>1701875028618</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701875028618</updated>
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

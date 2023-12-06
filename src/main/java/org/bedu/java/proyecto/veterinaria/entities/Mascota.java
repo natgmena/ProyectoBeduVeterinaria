@@ -22,7 +22,7 @@ public class Mascota implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idMascota;
+    private Long id;
 
     @NotEmpty(message = "El nombre de la mascota no puede estar vacio")
     @Size(min= 2, max = 25)
