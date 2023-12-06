@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RestController
 @RequestMapping("/clientes")
 public class ClienteController {
     private final IClienteService clienteService;
@@ -75,11 +76,12 @@ public class ClienteController {
 
     @PutMapping("/actualizar/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody void actualizar(@PathVariable("id") Long id, @Valid @RequestBody Cliente cliente){
+    public @ResponseBody void actualizar( @Valid @RequestBody Cliente cliente){
         clienteService.update(cliente);
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public @ResponseBody Cliente deleteById(@PathVariable Long id){
         return clienteService.deleteById(id);
     }
@@ -91,6 +93,7 @@ public class ClienteController {
     }
 
     @GetMapping("/buscar/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public @ResponseBody Cliente findById(@PathVariable Long id){
         return clienteService.findById(id);
     }
