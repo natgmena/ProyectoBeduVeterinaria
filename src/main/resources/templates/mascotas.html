@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layouts/head :: head}">
+</head>
+<body>
+<header th:insert="~{layouts/header :: header}"></header>
+<div>
+    <a class="btn btn-primary btn-sm" th:href="@{/mascotas/agregar}">Registrar Mascota</a>
+    <br>
+    <div th:if="${mascotas != null and !mascotas.isEmpty()}">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>Nombre:</th>
+                <th>Tipo Mascota:</th>
+                <th>Raza:</th>
+                <th>Sexo:</th>
+                <th>Edad:</th>
+                <th>Cliente:</th>
+                <th>Editar:</th>
+                <th>Eliminar:</th>
+            </tr>
+            </thead>
+            <tr th:each="mascota : ${mascotas}">
+                <td th:text="${mascota.nombre}">Mostrar Nombre</td>
+                <td th:text="${mascota.tipoMascota}">Mostrar Tipo</td>
+                <td th:text="${mascota.raza}">Mostrar Raza</td>
+                <td th:text="${mascota.sexo}">Mostrar Sexo</td>
+                <td th:text="${mascota.edad}">Mostrar Edad</td>
+                <td th:text="${mascota.clientes.getNombreCompleto()}">Mostrar Cliente</td>
+                <td><a class="btn btn-warning btn-sm" th:href="@{/mascotas/editar/} + ${mascota.id}">Editar</a></td>
+                <td><a class="btn btn-danger btn-sm" th:href="@{/mascotas/eliminar} + '/' + ${mascota.id}">Eliminar</a></td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${mascotas == null or mascotas.isEmpty()}">
+        La lista de mascotas esta vacia
+    </div>
+</div>
+</body>
+</html>

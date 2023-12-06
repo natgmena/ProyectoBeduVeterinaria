@@ -1,6 +1,7 @@
 package org.bedu.java.proyecto.veterinaria.services;
 
 import org.bedu.java.proyecto.veterinaria.DAO.IVeterinarioRepository;
+import org.bedu.java.proyecto.veterinaria.entities.Cliente;
 import org.bedu.java.proyecto.veterinaria.entities.Veterinario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ public class VeterinarioService implements IVeterinarioService{
     @Autowired
     private IVeterinarioRepository veterinarioRepository;
 
+
     @Override
     public void save(Veterinario veterinario) {
         veterinarioRepository.save(veterinario);
@@ -24,13 +26,8 @@ public class VeterinarioService implements IVeterinarioService{
     }
 
     @Override
-    public Veterinario findById(Long id) {
-        return veterinarioRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public void delete(Long id) {
-        veterinarioRepository.deleteById(id);
+    public Veterinario findById(Veterinario veterinario) {
+        return veterinarioRepository.findById(veterinario.getId()).orElse(null);
     }
 
     @Override
@@ -41,5 +38,21 @@ public class VeterinarioService implements IVeterinarioService{
     @Override
     public void update(Veterinario veterinario) {
         veterinarioRepository.save(veterinario);
+    }
+
+    @Override
+    public void delete(Veterinario veterinario) {
+        veterinarioRepository.delete(veterinario);
+    }
+
+    @Override
+    public Veterinario deleteById(Long id) {
+        veterinarioRepository.deleteById(id);
+        return null;
+    }
+
+    @Override
+    public Veterinario findById(Long id) {
+        return veterinarioRepository.findById(id).orElse(null);
     }
 }

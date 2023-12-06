@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layouts/head :: head}">
+</head>
+<body>
+<header th:insert="~{layouts/header :: header}"></header>
+<div>
+    <a class="btn btn-primary btn-sm" th:href="@{/veterinarios/agregar}">Agregar Veterinario</a>
+    <br>
+    <div th:if="${veterinarios != null and !veterinarios.isEmpty()}">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>Nombre:</th>
+                <th>Apellido Paterno:</th>
+                <th>Apellido Materno:</th>
+                <th>Cedula:</th>
+                <th>Direccion:</th>
+                <th>Telefono:</th>
+                <th>Email:</th>
+                <th>Editar:</th>
+                <th>Eliminar:</th>
+            </tr>
+            </thead>
+            <tr th:each="veterinario : ${veterinarios}">
+                <td th:text="${veterinario.nombre}">Mostrar Nombre</td>
+                <td th:text="${veterinario.apePaterno}">Mostrar Apellido</td>
+                <td th:text="${veterinario.apeMaterno}">Mostrar Apellido</td>
+                <td th:text="${veterinario.cedula}">Mostrar Apellido</td>
+                <td th:text="${veterinario.direccion}">Mostrar Direccion</td>
+                <td th:text="${veterinario.telefono}">Mostrar Telefono</td>
+                <td th:text="${veterinario.email}">Mostrar Email</td>
+                <td><a class="btn btn-warning btn-sm" th:href="@{/veterinarios/editar/} + ${veterinario.id}">Editar</a></td>
+                <td><a class="btn btn-danger btn-sm" th:href="@{/veterinarios/eliminar} + '/' + ${veterinario.id}">Eliminar</a></td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${veterinarios == null or veterinarios.isEmpty()}">
+        La lista de veterinarios esta vacia
+    </div>
+</div>
+</body>
+</html>

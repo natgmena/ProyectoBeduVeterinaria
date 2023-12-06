@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layouts/head :: head}">
+</head>
+<body>
+<header th:insert="~{layouts/header :: header}"></header>
+<div>
+    <a class="btn btn-primary btn-sm" th:href="@{/consultas/agregar}">Registrar Mascota</a>
+    <br>
+    <div th:if="${consultas != null and !consultas.isEmpty()}">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+            <tr>
+                <th>Nombre Mascota:</th>
+                <th>Nombre Veterinario:</th>
+                <th>Fecha Registro:</th>
+                <th>Diagnostico:</th>
+                <th>Tratamiento:</th>
+                <th>Costo:</th>
+                <th>Editar:</th>
+                <th>Eliminar:</th>
+            </tr>
+            </thead>
+            <tr th:each="consulta : ${consultas}">
+                <td th:text="${consulta.mascota.nombre}">Mostrar Nombre Mascota</td>
+                <td th:text="${consulta.veterinario.getNombreCompleto()}">Mostrar Nombre Cliente</td>
+                <td th:text="${consulta.fechaConsulta}">Mostrar Fecha Consulta</td>
+                <td th:text="${consulta.diagnostico}">Mostrar Diagnostico</td>
+                <td th:text="${consulta.tratamiento}">Mostrar Tratamiento</td>
+                <td th:text="${consulta.costo}">Mostrar Costo</td>
+                <td><a class="btn btn-warning btn-sm" th:href="@{/consultas/editar/} + ${consulta.id}">Editar</a></td>
+                <td><a class="btn btn-danger btn-sm" th:href="@{/consultas/eliminar} + '/' + ${consulta.id}">Eliminar</a></td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${consultas == null or consultas.isEmpty()}">
+        No se ah registrado ninguna consulta
+    </div>
+</div>
+</body>
+</html>

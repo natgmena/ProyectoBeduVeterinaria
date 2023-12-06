@@ -2,9 +2,12 @@ package org.bedu.java.proyecto.veterinaria.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,7 +16,7 @@ public class Mascota implements Serializable {
     private static final long serialVersionUID = 6776155424837865739L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
     @Size(min= 2, max = 25)
@@ -22,15 +25,16 @@ public class Mascota implements Serializable {
     private String tipoMascota;
     private String raza;
     @NotEmpty
-    private char sexo;
-    @NotEmpty
-    private byte edad;
-    private String diagnostico;
-
-    @OneToOne
-    private Cliente cliente;
-    @ManyToMany
-    private List<Veterinario> veterinarios;
+    private String sexo;
+    @NotNull
+    private int edad;
+    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
+    private Date fechaRegistro;
+    @ManyToOne
+    private Cliente clientes;
 
     public Long getId() {
         return id;
@@ -64,43 +68,36 @@ public class Mascota implements Serializable {
         this.raza = raza;
     }
 
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public byte getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(byte edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
-    public String getDiagnostico() {
-        return diagnostico;
+    public Date getFechaRegistro() {
+        return fechaRegistro;
     }
 
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getClientes() {
+        return clientes;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClientes(Cliente clientes) {
+        this.clientes = clientes;
     }
 
-    public List<Veterinario> getVeterinarios() {
-        return veterinarios;
-    }
-
-    public void setVeterinarios(List<Veterinario> veterinarios) {
-        this.veterinarios = veterinarios;
-    }
 }

@@ -2,10 +2,12 @@ package org.bedu.java.proyecto.veterinaria.controller;
 
 import jakarta.validation.Valid;
 import org.bedu.java.proyecto.veterinaria.entities.Cliente;
+import org.bedu.java.proyecto.veterinaria.entities.Veterinario;
 import org.bedu.java.proyecto.veterinaria.services.ClienteService;
-import org.springframework.http.HttpStatus;
+import org.bedu.java.proyecto.veterinaria.services.IClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,21 +15,26 @@ import java.util.List;
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
-    private final ClienteService clienteService;
+    private final IClienteService clienteService;
 
     public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
 
-    @PostMapping("/newcliente")
-    public String save(@Valid @RequestBody Cliente cliente){
+    //Metodos para vista web con thymeleaf
+
+    @PostMapping("/guardar")
+    public String save(@Valid Cliente cliente, Errors errors){
+        if(errors.hasErrors()){
+            return "modificarcliente";
+        }
         clienteService.save(cliente);
-        return "clientes";
+        return "redirect:/clientes";
     }
 
     @GetMapping("/agregar")
     public String agregar(Cliente cliente){
-        return "modificar";
+        return "modificarcliente";
     }
 
     @GetMapping()
@@ -37,24 +44,50 @@ public class ClienteController {
         return "clientes";
     }
 
-    @GetMapping("/buscar/{id}")
-    public Cliente findById(@PathVariable Long id){
-        return clienteService.findById(id);
-    }
 
     @GetMapping("/buscarn/{nombre}")
     public List<Cliente> findByName(@PathVariable String nombre){
         return clienteService.findByName(nombre);
     }
 
-    @PutMapping("/actualizar")
-    public void updateCliente(@Valid @RequestBody Cliente cliente){
+    @GetMapping("/editar/{id}")
+    public String update(Cliente cliente, Model model){
+        cliente = clienteService.findById(cliente);
+        model.addAttribute("cliente", cliente);
+        return "modificarcliente";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(Cliente cliente){
+        clienteService.delete(cliente);
+        return "redirect:/clientes";
+    }
+
+
+    //Metodos para usar con postman
+
+    @PostMapping("/newcliente")
+    public @ResponseBody void guardar(@Valid @RequestBody Cliente cliente){
+        clienteService.save(cliente);
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public @ResponseBody void actualizar(@Valid @RequestBody Cliente cliente){
         clienteService.update(cliente);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public Cliente deleteById(@PathVariable Long id){
+    @DeleteMapping("/delete/{id}")
+    public @ResponseBody Cliente deleteById(@PathVariable Long id){
         return clienteService.deleteById(id);
     }
 
+    @GetMapping("/allclientes")
+    public @ResponseBody List<Cliente> findAll(Cliente cliente){
+        return clienteService.findAll();
+    }
+
+    @GetMapping("/buscar/{id}")
+    public @ResponseBody Cliente findById(@PathVariable Long id){
+        return clienteService.findById(id);
+    }
 }

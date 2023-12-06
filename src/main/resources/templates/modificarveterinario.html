@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layouts/head :: head}">
+    <title>Datos del veterinario</title>
+</head>
+<body>
+<header th:insert="~{layouts/header :: header}"></header>
+
+<br/>
+<div class="container">
+    <h1 class="text-center">Datos del veterinario</h1>
+    <form th:action="@{/veterinarios/guardar}" th:object="${veterinario}" method="post" class="col-md-8 offset-md-2">
+        <input type="hidden" name="id" th:field="*{id}">
+        <div class="row mb-3">
+            <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="nombre" th:field="*{nombre}"/>
+                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="ape_paterno" class="col-sm-2 col-form-label">Apellido Paterno</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="ape_paterno" th:field="*{apePaterno}">
+                <span th:if="${#fields.hasErrors('apePaterno')}" th:errors="*{apePaterno}"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="ape_materno" class="col-sm-2 col-form-label">Apellido Materno</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="ape_materno" th:field="*{apeMaterno}">
+                <span th:if="${#fields.hasErrors('apeMaterno')}" th:errors="*{apeMaterno}"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="direccion" th:field="*{direccion}">
+                <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="cedula" class="col-sm-2 col-form-label">Cedula</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="cedula" th:field="*{cedula}">
+                <span th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" id="telefono" th:field="*{telefono}">
+                <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" th:field="*{email}">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+        </div>
+        <a class="btn btn-primary btn-sm-star" th:href="@{/veterinarios}">Regresar</a>
+        <button type="submit" class="btn btn-primary float-sm-end" name="guardar" value="guardar">Guardar</button>
+    </form>
+</div>
+</body>
+</html>

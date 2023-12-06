@@ -9,8 +9,10 @@ public interface IVeterinarioService {
 
     public void save(Veterinario veterinario);
     public List<Veterinario> findAll();
-    public Veterinario findById(Long id);
-    public void delete (Long id);
+    public Veterinario findById(Veterinario veterinario);
     public List<Veterinario> findByName(String nombre);
     public void update(Veterinario veterinario);
+    public void delete(Veterinario veterinario);
+    public Veterinario deleteById(Long id);
+    public Veterinario findById(Long id);
 }

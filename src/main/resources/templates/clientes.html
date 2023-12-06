@@ -5,9 +5,11 @@
 <body>
 <header th:insert="~{layouts/header :: header}"></header>
 <div>
-    <a th:href="@{/clientes/agregar}">Agregar Cliente</a>
+    <a class="btn btn-primary btn-sm" th:href="@{/clientes/agregar}">Agregar Cliente</a>
+    <br>
     <div th:if="${clientes != null and !clientes.isEmpty()}">
-        <table border="1">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
             <tr>
                 <th>Nombre:</th>
                 <th>Apellido Paterno:</th>
@@ -15,8 +17,11 @@
                 <th>Direccion:</th>
                 <th>Telefono:</th>
                 <th>Email:</th>
-            </tr>
+                <th>Modificar</th>
+                <th>Eliminar</th>
 
+            </tr>
+            </thead>
             <tr th:each="cliente : ${clientes}">
                 <td th:text="${cliente.nombre}">Mostrar Nombre</td>
                 <td th:text="${cliente.apePaterno}">Mostrar Apellido</td>
@@ -24,6 +29,8 @@
                 <td th:text="${cliente.direccion}">Mostrar Direccion</td>
                 <td th:text="${cliente.telefono}">Mostrar Telefono</td>
                 <td th:text="${cliente.email}">Mostrar Email</td>
+                <td><a class="btn btn-warning btn-sm" th:href="@{/clientes/editar/} + ${cliente.id}">Editar</a></td>
+                <td><a class="btn btn-danger btn-sm" th:href="@{/clientes/eliminar} + '/' + ${cliente.id}">Eliminar</a></td>
             </tr>
         </table>
     </div>

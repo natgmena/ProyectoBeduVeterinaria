@@ -1,6 +1,7 @@
 package org.bedu.java.proyecto.veterinaria.services;
 
 import org.bedu.java.proyecto.veterinaria.DAO.IMascotaRepository;
+import org.bedu.java.proyecto.veterinaria.entities.Cliente;
 import org.bedu.java.proyecto.veterinaria.entities.Mascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +25,15 @@ public class MascotaService implements IMascotaService{
         return (List<Mascota>) mascotaRepository.findAll();
     }
 
+
     @Override
-    public Optional<Mascota> findById(Long id) {
-        return Optional.ofNullable(mascotaRepository.findById(id).orElse(null));
+    public Mascota findById(Long id) {
+        return mascotaRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Mascota findById(Mascota mascota) {
+        return mascotaRepository.findById(mascota.getId()).orElse(null);
     }
 
     @Override
@@ -40,7 +47,13 @@ public class MascotaService implements IMascotaService{
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void delete(Mascota mascota) {
+        mascotaRepository.delete(mascota);
+    }
+
+    @Override
+    public Mascota deleteById(Long id) {
         mascotaRepository.deleteById(id);
+        return null;
     }
 }

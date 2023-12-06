@@ -25,14 +25,10 @@ public class ClienteService implements IClienteService{
     }
 
     @Override
-    public Cliente findById(Long id) {
-        return clienteRepository.findById(id).orElse(null);
+    public Cliente findById(Cliente cliente) {
+        return clienteRepository.findById(cliente.getId()).orElse(null);
     }
 
-    @Override
-    public void delete(Long id) {
-        clienteRepository.deleteById(id);
-    }
 
     @Override
     public List<Cliente> findByName(String nombre) {
@@ -45,10 +41,18 @@ public class ClienteService implements IClienteService{
     }
 
     @Override
+    public void delete(Cliente cliente) {
+        clienteRepository.delete(cliente);
+    }
+    @Override
     public Cliente deleteById(Long id) {
         clienteRepository.deleteById(id);
         return null;
     }
 
+    @Override
+    public Cliente findById(Long id) {
+        return clienteRepository.findById(id).orElse(null);
+    }
 
 }

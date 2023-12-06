@@ -1,10 +1,8 @@
 package org.bedu.java.proyecto.veterinaria.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 
@@ -14,14 +12,15 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = -7678729433964902039L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "El nombre del cliente no puede estar vacio")
     private String nombre;
-    @NotEmpty
+    @NotEmpty(message = "El apellido paterno del cliente no puede estar vacio")
     private String apePaterno;
     private String apeMaterno;
-    @NotEmpty
+    @NotBlank(message = "Se debe proporcionar una direccion")
+    @Length(min = 5, max = 50)
     private String direccion;
     @NotNull
     private Long telefono;
@@ -82,5 +81,9 @@ public class Cliente implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNombreCompleto(){
+        return nombre + " " + apePaterno + " " + apeMaterno;
     }
 }

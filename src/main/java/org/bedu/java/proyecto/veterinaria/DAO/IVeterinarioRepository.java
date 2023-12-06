@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IVeterinarioRepository extends CrudRepository<Veterinario, Long> {
     List<Veterinario> findByNombre(String nombre);
+
 }
