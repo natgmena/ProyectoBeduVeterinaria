@@ -22,7 +22,7 @@ public class Cliente implements Serializable {
     private Long id;
 
     @NotEmpty(message = "El nombre del cliente no puede estar vacio")
-    @Column(length = 30)
+    @Column(length = 30, name = "nombre")
     private String nombre;
 
     @NotEmpty(message = "El apellido parterno del cliente no puede estar vacio")
@@ -34,19 +34,19 @@ public class Cliente implements Serializable {
     private String apeMaterno;
 
     @NotBlank(message = "La direccion del cliente no puede estar vacia")
-    @Column(length = 100)
+    @Column(length = 100, name = "direccion")
     private String direccion;
 
 
     @NotNull(message = "El telefono no puede estar vacio")
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 10, name = "telefono")
     private Long telefono;
 
     @Email
-    @Column(nullable = false, length = 26)
+    @Column(nullable = false, length = 26, name = "email")
     @NotNull(message = "El correo del cliente no puede estar vacio")
     private String email;
-
+    @Column(nullable = false, length = 26, name = "nombre_completo")
     public String getNombreCompleto(){
         return nombre + " " + apePaterno + " " + apeMaterno;
     }

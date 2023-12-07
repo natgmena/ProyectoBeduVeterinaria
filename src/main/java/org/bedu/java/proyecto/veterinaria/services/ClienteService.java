@@ -1,7 +1,10 @@
 package org.bedu.java.proyecto.veterinaria.services;
 
 import org.bedu.java.proyecto.veterinaria.DAO.IClienteRepository;
+import org.bedu.java.proyecto.veterinaria.DTO.ClienteDTO;
+import org.bedu.java.proyecto.veterinaria.DTO.NewClienteDTO;
 import org.bedu.java.proyecto.veterinaria.entities.Cliente;
+import org.bedu.java.proyecto.veterinaria.mapper.ClienteMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,9 @@ public class ClienteService implements IClienteService{
 
     @Autowired
     private IClienteRepository clienteRepository;
+
+    @Autowired
+    private ClienteMapper clienteMapper;
 
 
     @Override

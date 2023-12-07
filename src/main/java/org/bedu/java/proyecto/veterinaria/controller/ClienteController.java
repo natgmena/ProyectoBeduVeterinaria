@@ -1,6 +1,8 @@
 package org.bedu.java.proyecto.veterinaria.controller;
 
 import jakarta.validation.Valid;
+import org.bedu.java.proyecto.veterinaria.DTO.ClienteDTO;
+import org.bedu.java.proyecto.veterinaria.DTO.NewClienteDTO;
 import org.bedu.java.proyecto.veterinaria.entities.Cliente;
 import org.bedu.java.proyecto.veterinaria.entities.Veterinario;
 import org.bedu.java.proyecto.veterinaria.services.ClienteService;
@@ -33,6 +35,7 @@ public class ClienteController {
         clienteService.save(cliente);
         return "redirect:/clientes";
     }
+
 
     @GetMapping("/agregar")
     public String agregar(Cliente cliente){
@@ -68,6 +71,8 @@ public class ClienteController {
 
     //Metodospara  usar con postman
 
+
+
     @PostMapping("/newcliente")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void guardar(@Valid @RequestBody Cliente cliente){
@@ -84,6 +89,7 @@ public class ClienteController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public @ResponseBody Cliente deleteById(@PathVariable Long id){
         return clienteService.deleteById(id);
+
     }
 
     @GetMapping("/allclientes")
